@@ -15,6 +15,13 @@ import {
 } from '../shared/docGenUtils'
 import { EndpointDetails, Package, Schema } from '../shared/docGenTypes'
 
+type MasterListTable = Promise<{
+  allAdaptersTable: TableText
+  compositeText: string
+  sourceText: string
+  targetText: string
+}>
+
 const pathToComposites = 'packages/composites/'
 const pathToSources = 'packages/sources/'
 const pathToTargets = 'packages/targets/'
@@ -25,6 +32,22 @@ const baseEaDependencies = [
   'ea-factories',
   'ea-reference-data-reader',
   'ea-test-helpers',
+]
+
+export const tableHeaders = [
+  'Name',
+  'Version',
+  'Type',
+  'Default API URL',
+  'Dependencies',
+  'Environment Variables (✅ = required)',
+  'Endpoints',
+  'Default Endpoint',
+  'Batchable Endpoints',
+  'Supports WS',
+  'Unit Tests',
+  'Integration Tests',
+  'End-to-End Tests',
 ]
 
 const getListText = (list: string[], description: string): string => {
@@ -161,86 +184,84 @@ const getAdapterList = (pathToParent: string, listDescription: string) => {
   return { adapters, text }
 }
 
+export const buildMasterListTable = async (verbose = false): MasterListTable => {
+  const composite = getAdapterList(pathToComposites, compositeListDescription)
+  const source = getAdapterList(pathToSources, sourceListDescription)
+  const target = getAdapterList(pathToTargets, targetListDescription)
+
+  // Fetch group-specific fields
+  const allAdapters = [
+    ...composite.adapters.map((name) => ({
+      name,
+      type: '`composite`',
+      path: pathToComposites + name,
+      redirect: getRedirectText(pathToComposites, name),
+    })),
+    ...source.adapters.map((name) => ({
+      name,
+      type: '`source`',
+      path: pathToSources + name,
+      redirect: getRedirectText(pathToSources, name),
+    })),
+    ...target.adapters.map((name) => ({
+      name,
+      type: '`target`',
+      path: pathToTargets + name,
+      redirect: getRedirectText(pathToTargets, name),
+    })),
+  ].sort((a, b) => sortText(a.name, b.name))
+
+  // Fetch general fields
+  const allAdaptersTable: TableText = await Promise.all(
+    allAdapters.map(async (adapter) => {
+      const { dependencies, version } = getPackage(adapter.path, verbose)
+      const { defaultBaseUrl, defaultEndpoint } = await getConfigDefaults(adapter.path, verbose)
+      const envVars = getEnvVars(adapter.path, verbose)
+      const { batchableEndpoints, endpointsText } = await getEndpoints(adapter.path, verbose)
+      const wsSupport = await getWSSupport(adapter.path, verbose)
+      const { e2e, integration, unit } = getTestSupport(adapter.path)
+
+      return [
+        adapter.redirect,
+        version,
+        adapter.type,
+        defaultBaseUrl,
+        dependencies,
+        envVars,
+        endpointsText,
+        defaultEndpoint,
+        batchableEndpoints,
+        wsSupport,
+        unit,
+        integration,
+        e2e,
+      ]
+    }),
+  )
+
+  return {
+    allAdaptersTable,
+    compositeText: composite.text,
+    sourceText: source.text,
+    targetText: target.text,
+  }
+}
+
 export const generateMasterList = async (verbose = false): Promise<void> => {
   try {
-    const composite = getAdapterList(pathToComposites, compositeListDescription)
-    const source = getAdapterList(pathToSources, sourceListDescription)
-    const target = getAdapterList(pathToTargets, targetListDescription)
-
-    // Fetch group-specific fields
-    const allAdapters = [
-      ...composite.adapters.map((name) => ({
-        name,
-        type: '`composite`',
-        path: pathToComposites + name,
-        redirect: getRedirectText(pathToComposites, name),
-      })),
-      ...source.adapters.map((name) => ({
-        name,
-        type: '`source`',
-        path: pathToSources + name,
-        redirect: getRedirectText(pathToSources, name),
-      })),
-      ...target.adapters.map((name) => ({
-        name,
-        type: '`target`',
-        path: pathToTargets + name,
-        redirect: getRedirectText(pathToTargets, name),
-      })),
-    ].sort((a, b) => sortText(a.name, b.name))
-
-    // Fetch general fields
-    const allAdaptersTable: TableText = await Promise.all(
-      allAdapters.map(async (adapter) => {
-        const { dependencies, version } = getPackage(adapter.path, verbose)
-        const { defaultBaseUrl, defaultEndpoint } = await getConfigDefaults(adapter.path, verbose)
-        const envVars = getEnvVars(adapter.path, verbose)
-        const { batchableEndpoints, endpointsText } = await getEndpoints(adapter.path, verbose)
-        const wsSupport = await getWSSupport(adapter.path, verbose)
-        const { e2e, integration, unit } = getTestSupport(adapter.path)
-
-        return [
-          adapter.redirect,
-          version,
-          adapter.type,
-          defaultBaseUrl,
-          dependencies,
-          envVars,
-          endpointsText,
-          defaultEndpoint,
-          batchableEndpoints,
-          wsSupport,
-          unit,
-          integration,
-          e2e,
-        ]
-      }),
+    const { allAdaptersTable, compositeText, sourceText, targetText } = await buildMasterListTable(
+      verbose,
     )
 
     let allAdapterText =
       'This document was generated automatically. Please see [Master List Generator](./packages/scripts#master-list-generator) for more info.\n\n'
 
-    allAdapterText +=
-      buildTable(allAdaptersTable, [
-        'Name',
-        'Version',
-        'Type',
-        'Default API URL',
-        'Dependencies',
-        'Environment Variables (✅ = required)',
-        'Endpoints',
-        'Default Endpoint',
-        'Batchable Endpoints',
-        'Supports WS',
-        'Unit Tests',
-        'Integration Tests',
-        'End-to-End Tests',
-      ]) + '\n'
+    allAdapterText += buildTable(allAdaptersTable, tableHeaders) + '\n'
 
     saveText([
-      { path: pathToComposites + 'README.md', text: composite.text },
-      { path: pathToSources + 'README.md', text: source.text },
-      { path: pathToTargets + 'README.md', text: target.text },
+      { path: pathToComposites + 'README.md', text: compositeText },
+      { path: pathToSources + 'README.md', text: sourceText },
+      { path: pathToTargets + 'README.md', text: targetText },
       { path: 'MASTERLIST.md', text: allAdapterText },
     ])
   } catch (error) {
