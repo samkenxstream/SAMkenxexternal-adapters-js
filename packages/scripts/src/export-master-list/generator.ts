@@ -5,6 +5,7 @@ export const exportMasterList = async (verbose = false): Promise<void> => {
     const { allAdaptersTable } = await buildMasterListTable(verbose)
 
     const fullTable = [tableHeaders, ...allAdaptersTable]
+    console.log({ fullTable })
   } catch (error) {
     console.error({ error: error.message, stack: error.stack })
     throw Error(error)

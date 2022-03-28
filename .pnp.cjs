@@ -5514,6 +5514,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/shelljs", "npm:0.8.11"],
             ["@types/swagger-jsdoc", "npm:6.0.1"],
             ["@types/yaml", "npm:1.9.7"],
+            ["airtable", "npm:0.11.2"],
             ["axios", "npm:0.22.0"],
             ["axios-mock-adapter", "virtual:490c3ad4216947ed7273aa36c5dd60e9ddcc5d0939f57049dd1de8af69c263d58ee7cc2cd0dcc6c42583caa88abb35b0f76f2389a9d34f0c5057a13853db6308#npm:1.20.0"],
             ["axios-observable", "virtual:490c3ad4216947ed7273aa36c5dd60e9ddcc5d0939f57049dd1de8af69c263d58ee7cc2cd0dcc6c42583caa88abb35b0f76f2389a9d34f0c5057a13853db6308#npm:1.3.0"],
@@ -11792,6 +11793,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "HARD",
         }],
+        ["npm:14.18.12", {
+          "packageLocation": "./.yarn/cache/@types-node-npm-14.18.12-61f7082f71-8a0273caa0.zip/node_modules/@types/node/",
+          "packageDependencies": [
+            ["@types/node", "npm:14.18.12"]
+          ],
+          "linkType": "HARD",
+        }],
         ["npm:16.11.19", {
           "packageLocation": "./.yarn/cache/@types-node-npm-16.11.19-b289452f75-a9ba0cd1e6.zip/node_modules/@types/node/",
           "packageDependencies": [
@@ -12687,6 +12695,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["abortcontroller-polyfill", [
+        ["npm:1.7.3", {
+          "packageLocation": "./.yarn/cache/abortcontroller-polyfill-npm-1.7.3-3b01198b7a-55739d7f0c.zip/node_modules/abortcontroller-polyfill/",
+          "packageDependencies": [
+            ["abortcontroller-polyfill", "npm:1.7.3"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["abstract-leveldown", [
         ["npm:6.2.3", {
           "packageLocation": "./.yarn/cache/abstract-leveldown-npm-6.2.3-73e4ffefa5-00202b2eb7.zip/node_modules/abstract-leveldown/",
@@ -12910,6 +12927,20 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["aggregate-error", "npm:3.1.0"],
             ["clean-stack", "npm:2.2.0"],
             ["indent-string", "npm:4.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["airtable", [
+        ["npm:0.11.2", {
+          "packageLocation": "./.yarn/cache/airtable-npm-0.11.2-a22ef3d946-bea6d743ed.zip/node_modules/airtable/",
+          "packageDependencies": [
+            ["airtable", "npm:0.11.2"],
+            ["@types/node", "npm:14.18.12"],
+            ["abort-controller", "npm:3.0.0"],
+            ["abortcontroller-polyfill", "npm:1.7.3"],
+            ["lodash", "npm:4.17.21"],
+            ["node-fetch", "virtual:a22ef3d946364250da94a09859ce27baaebada36e8ac7ebfbe9aee86e5f38945e15ea3ac60f930ef418d22e1c7d71cef4b2b7a653b823a1c006863f9065b2b42#npm:2.6.7"]
           ],
           "linkType": "HARD",
         }]
@@ -26621,6 +26652,27 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["node-fetch", "npm:2.6.1"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:2.6.7", {
+          "packageLocation": "./.yarn/cache/node-fetch-npm-2.6.7-777aa2a6df-8d816ffd1e.zip/node_modules/node-fetch/",
+          "packageDependencies": [
+            ["node-fetch", "npm:2.6.7"]
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:a22ef3d946364250da94a09859ce27baaebada36e8ac7ebfbe9aee86e5f38945e15ea3ac60f930ef418d22e1c7d71cef4b2b7a653b823a1c006863f9065b2b42#npm:2.6.7", {
+          "packageLocation": "./.yarn/__virtual__/node-fetch-virtual-f1272f2117/0/cache/node-fetch-npm-2.6.7-777aa2a6df-8d816ffd1e.zip/node_modules/node-fetch/",
+          "packageDependencies": [
+            ["node-fetch", "virtual:a22ef3d946364250da94a09859ce27baaebada36e8ac7ebfbe9aee86e5f38945e15ea3ac60f930ef418d22e1c7d71cef4b2b7a653b823a1c006863f9065b2b42#npm:2.6.7"],
+            ["@types/encoding", null],
+            ["encoding", null],
+            ["whatwg-url", "npm:5.0.0"]
+          ],
+          "packagePeers": [
+            "@types/encoding",
+            "encoding"
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["node-forge", [
@@ -31779,6 +31831,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["tr46", [
+        ["npm:0.0.3", {
+          "packageLocation": "./.yarn/cache/tr46-npm-0.0.3-de53018915-726321c5ea.zip/node_modules/tr46/",
+          "packageDependencies": [
+            ["tr46", "npm:0.0.3"]
+          ],
+          "linkType": "HARD",
+        }],
         ["npm:2.1.0", {
           "packageLocation": "./.yarn/cache/tr46-npm-2.1.0-00af583f4f-ffe6049b9d.zip/node_modules/tr46/",
           "packageDependencies": [
@@ -33519,6 +33578,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["webidl-conversions", [
+        ["npm:3.0.1", {
+          "packageLocation": "./.yarn/cache/webidl-conversions-npm-3.0.1-60310f6a2b-c92a0a6ab9.zip/node_modules/webidl-conversions/",
+          "packageDependencies": [
+            ["webidl-conversions", "npm:3.0.1"]
+          ],
+          "linkType": "HARD",
+        }],
         ["npm:4.0.2", {
           "packageLocation": "./.yarn/cache/webidl-conversions-npm-4.0.2-1d159e6409-c93d8dfe90.zip/node_modules/webidl-conversions/",
           "packageDependencies": [
@@ -33747,6 +33813,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["whatwg-url", [
+        ["npm:5.0.0", {
+          "packageLocation": "./.yarn/cache/whatwg-url-npm-5.0.0-374fb45e60-b8daed4ad3.zip/node_modules/whatwg-url/",
+          "packageDependencies": [
+            ["whatwg-url", "npm:5.0.0"],
+            ["tr46", "npm:0.0.3"],
+            ["webidl-conversions", "npm:3.0.1"]
+          ],
+          "linkType": "HARD",
+        }],
         ["npm:8.7.0", {
           "packageLocation": "./.yarn/cache/whatwg-url-npm-8.7.0-67af66db8f-a87abcc6ce.zip/node_modules/whatwg-url/",
           "packageDependencies": [
