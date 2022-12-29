@@ -19934,7 +19934,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["mnemonist", "npm:0.38.3"],
             ["mocha", "npm:7.2.0"],
             ["node-fetch", "npm:2.6.1"],
-            ["qs", "npm:6.10.1"],
+            ["qs", "npm:6.10.3"],
             ["raw-body", "npm:2.4.1"],
             ["resolve", "patch:resolve@npm%3A1.17.0#~builtin<compat/resolve>::version=1.17.0&hash=07638b"],
             ["semver", "npm:6.3.0"],
@@ -28520,14 +28520,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["qs", [
-        ["npm:6.10.1", {
-          "packageLocation": "./.yarn/cache/qs-npm-6.10.1-12d3ab7795-00e390dbf9.zip/node_modules/qs/",
-          "packageDependencies": [
-            ["qs", "npm:6.10.1"],
-            ["side-channel", "npm:1.0.4"]
-          ],
-          "linkType": "HARD",
-        }],
         ["npm:6.10.3", {
           "packageLocation": "./.yarn/cache/qs-npm-6.10.3-172e1a3fb7-0fac5e6c71.zip/node_modules/qs/",
           "packageDependencies": [
@@ -28536,10 +28528,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "HARD",
         }],
-        ["npm:6.5.2", {
-          "packageLocation": "./.yarn/cache/qs-npm-6.5.2-dbf9d8386b-24af7b9928.zip/node_modules/qs/",
+        ["npm:6.5.3", {
+          "packageLocation": "./.yarn/cache/qs-npm-6.5.3-90b2635484-6f20bf08ca.zip/node_modules/qs/",
           "packageDependencies": [
-            ["qs", "npm:6.5.2"]
+            ["qs", "npm:6.5.3"]
           ],
           "linkType": "HARD",
         }],
@@ -29312,7 +29304,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["mime-types", "npm:2.1.32"],
             ["oauth-sign", "npm:0.9.0"],
             ["performance-now", "npm:2.1.0"],
-            ["qs", "npm:6.5.2"],
+            ["qs", "npm:6.5.3"],
             ["safe-buffer", "npm:5.2.1"],
             ["tough-cookie", "npm:2.5.0"],
             ["tunnel-agent", "npm:0.6.0"],
@@ -31086,7 +31078,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["formidable", "npm:1.2.2"],
             ["methods", "npm:1.1.2"],
             ["mime", "npm:2.5.2"],
-            ["qs", "npm:6.10.1"],
+            ["qs", "npm:6.10.3"],
             ["readable-stream", "npm:3.6.0"],
             ["semver", "npm:7.3.5"]
           ],
@@ -31104,7 +31096,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["formidable", "npm:1.2.2"],
             ["methods", "npm:1.1.2"],
             ["mime", "npm:2.5.2"],
-            ["qs", "npm:6.10.1"],
+            ["qs", "npm:6.10.3"],
             ["readable-stream", "npm:3.6.0"],
             ["semver", "npm:7.3.5"]
           ],
